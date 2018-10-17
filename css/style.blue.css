@@ -299,10 +299,10 @@ STYLE SWITCHER FOR DEMO
 
 /* HERO MEDIAQUERY */
 @media (max-width: 991.98px) {
-  .hero {
+  /* .hero {
     padding: 5rem 0 7rem;
     padding-top: 8rem;
-  }
+  } */
   .subscription-form .form-group {
     position: static;
   }
