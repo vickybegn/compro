@@ -128,10 +128,26 @@ body {
     color: #fff
 }
 
+
+@media (max-width: 991.98px) {
+    .navbar-header {
+       left: -22px;
+       width: 380px;
+       background: #fff;
+       margin-left: -50px
+       }
+      .navbar{
+          background: #0069d9;
+      }
+   }
+
+
 @media (max-width: 767px) {
     .navbar-header {
        left: -22px;
-       width: 200px;
+       width: 250px;
+       background: #fff;
+       margin-left: -40px
        }
     
        .navbar-brand .title{
@@ -140,6 +156,10 @@ body {
       
       .navbar-brand .caption{
         font-size: 0.4rem;
+      }
+
+      .navbar{
+          background: #0069d9;
       }
    }
 
