@@ -140,34 +140,30 @@
                 <p><a href="mailto:ptekamasmotor@gmail.com" class="text-small">ptekamasmotor@gmail.com</a></p>
             </div>
           </div>
-          <div class="col-lg-7">
+          <div class="col-lg-7" id="contactFormContent">
               <header class="section-header">
                   <h2 class="mb-2">Contact Form</h2>
                   <p class="lead">Isi form berikut untuk berkomunikasi dengan kami.</p>
                 </header>
-            <form class="contact-form text-left">
+            <form id="contactFormEkaMasMotor" class="contact-form text-left">
               <div class="form-group mb-4">
                 <label>Nama<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="name" class="form-control">
+                <input type="text" name="name" class="form-control" required>
               </div>
               <div class="form-group mb-4">
                 <label>Nomor Telepon<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="phone" class="form-control">
+                <input type="text" name="phone" class="form-control" required>
               </div>
               <div class="form-group mb-4">
                 <label>Email<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="email" class="form-control">
-              </div>
-              <div class="form-group mb-4">
-                <label>Tentang<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="subject" class="form-control">
+                <input type="email" name="email" class="form-control" required>
               </div>
               <div class="form-group mb-4">
                 <label>Isi Pesan<sup class="text-primary">&#10033;</sup></label>
-                <textarea name="message" class="form-control"></textarea>
+                <textarea id="txtArea" name="message" class="form-control" required></textarea>
               </div>
               <div class="form-group">
-                <input type="submit" value="Kirim" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary"><i id="loading"></i> Kirim</button>
               </div>
             </form>
           </div>
@@ -252,6 +248,57 @@
         </div>
       </footer>
     <!-- JavaScript files-->
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script>
+      $('#contactFormEkaMasMotor').submit((e)=>{
+        $('#loading').addClass('fa fa-spinner fa-spin')
+        e.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: 'https://e-commerce-fikrifrds.c9users.io/users/contactFormEkaMas',
+        data: $('#contactFormEkaMasMotor').serialize(),
+        success: function(res){
+          $('#contactFormContent').html(`
+        <div style="width: 80%; margin:25px auto;" class="text-center">
+          <article class="box">
+            <figure>
+              <div class="aside align-self-center">
+                  <i class="fa fa-envelope"></i>
+              </div>
+            </figure>
+            <br/>
+              <div>
+                <h5 class="title">Pesan kamu telah kami terima!</h5>
+                <p>
+                Terima kasih telah menghubungi kami.
+                </p>
+                <p><strong>PT. EKA MAS MOTOR</strong></P>
+              </div>
+          </article>
+        </div>
+        `)
+        }
+      })
+        
+
+      })
+
+    $("#txtArea").on("keypress",function(e) {
+    var key = e.keyCode;
+
+    // If the user has pressed enter
+    if (key == 13) {
+        document.getElementById("txtArea").value = document.getElementById("txtArea").value + "\n";
+        return false;
+    }
+    else {
+        return true;
+    }
+});
+    </script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
